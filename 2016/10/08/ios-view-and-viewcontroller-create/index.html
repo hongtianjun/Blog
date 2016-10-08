@@ -11,31 +11,43 @@
     
     
     
-    <meta name="description" content="创建一个UIView‘’’    -(id)init {        if (self = [super init]) {
+    <meta name="description" content="创建一个UIView-(id)init {
+    if (self = [super init]) {
+
         UILabel * label = [UILabel new];
         label.tag = 100;
         [self addSubview:label];
 
-        NSLog(@&amp;quot;init&amp;quot;);">
+        NSLog(@&amp;quot;init&amp;quot;);
+
+        [se">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="ios 子视图和viewController创建周期">
 <meta property="og:url" content="http://www.hongtianjun.cn/2016/10/08/ios-view-and-viewcontroller-create/index.html">
 <meta property="og:site_name" content="古道西风瘦马">
-<meta property="og:description" content="创建一个UIView‘’’    -(id)init {        if (self = [super init]) {
+<meta property="og:description" content="创建一个UIView-(id)init {
+    if (self = [super init]) {
+
         UILabel * label = [UILabel new];
         label.tag = 100;
         [self addSubview:label];
 
-        NSLog(@&amp;quot;init&amp;quot;);">
-<meta property="og:updated_time" content="2016-10-08T13:51:05.000Z">
+        NSLog(@&amp;quot;init&amp;quot;);
+
+        [se">
+<meta property="og:updated_time" content="2016-10-08T13:53:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios 子视图和viewController创建周期">
-<meta name="twitter:description" content="创建一个UIView‘’’    -(id)init {        if (self = [super init]) {
+<meta name="twitter:description" content="创建一个UIView-(id)init {
+    if (self = [super init]) {
+
         UILabel * label = [UILabel new];
         label.tag = 100;
         [self addSubview:label];
 
-        NSLog(@&amp;quot;init&amp;quot;);">
+        NSLog(@&amp;quot;init&amp;quot;);
+
+        [se">
 <meta name="twitter:creator" content="@htj0414">
     
         <link rel="publisher" href="https://plus.google.com/htj014@gmail.com"/>
@@ -224,8 +236,10 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h2 id="创建一个UIView"><a href="#创建一个UIView" class="headerlink" title="创建一个UIView"></a>创建一个UIView</h2><p>‘’’<br>    -(id)init {<br>        if (self = [super init]) {</p>
-<pre><code>        UILabel * label = [UILabel new];
+            <h2 id="创建一个UIView"><a href="#创建一个UIView" class="headerlink" title="创建一个UIView"></a>创建一个UIView</h2><pre><code>-(id)init {
+    if (self = [super init]) {
+
+        UILabel * label = [UILabel new];
         label.tag = 100;
         [self addSubview:label];
 
@@ -282,7 +296,6 @@
     NSLog(@&quot;drawRect%@&quot;,NSStringFromCGRect(rect));
 
 }
-&apos;&apos;&apos;
 </code></pre><h2 id="将此View加入到UIViewController"><a href="#将此View加入到UIViewController" class="headerlink" title="将此View加入到UIViewController"></a>将此View加入到UIViewController</h2><pre><code>STPStartButton * btn = [STPStartButton new];
 [self.view addSubview:btn];
 [btn makeConstraints:^(MASConstraintMaker *make) {

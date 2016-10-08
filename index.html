@@ -211,8 +211,10 @@
             </div>
             
                 <div class="postShorten-content" itemprop="articleBody">
-                    <h2 id="创建一个UIView"><a href="#创建一个UIView" class="headerlink" title="创建一个UIView"></a>创建一个UIView</h2><p>‘’’<br>    -(id)init {<br>        if (self = [super init]) {</p>
-<pre><code>        UILabel * label = [UILabel new];
+                    <h2 id="创建一个UIView"><a href="#创建一个UIView" class="headerlink" title="创建一个UIView"></a>创建一个UIView</h2><pre><code>-(id)init {
+    if (self = [super init]) {
+
+        UILabel * label = [UILabel new];
         label.tag = 100;
         [self addSubview:label];
 
@@ -269,7 +271,6 @@
     NSLog(@&quot;drawRect%@&quot;,NSStringFromCGRect(rect));
 
 }
-&apos;&apos;&apos;
 </code></pre><h2 id="将此View加入到UIViewController"><a href="#将此View加入到UIViewController" class="headerlink" title="将此View加入到UIViewController"></a>将此View加入到UIViewController</h2><pre><code>STPStartButton * btn = [STPStartButton new];
 [self.view addSubview:btn];
 [btn makeConstraints:^(MASConstraintMaker *make) {
