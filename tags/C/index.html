@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="古道西风瘦马">
-    <title>分类: 开发 - 古道西风瘦马</title>
+    <title>标签: C - 古道西风瘦马</title>
     <meta name="author" content="梦中刀客">
     
     
@@ -14,7 +14,7 @@
     <meta name="description" content="梦中刀客的博客">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="古道西风瘦马">
-<meta property="og:url" content="http://www.hongtianjun.cn/categories/开发/index.html">
+<meta property="og:url" content="http://www.hongtianjun.cn/tags/C/index.html">
 <meta property="og:site_name" content="古道西风瘦马">
 <meta property="og:description" content="梦中刀客的博客">
 <meta name="twitter:card" content="summary">
@@ -233,228 +233,6 @@
         
     </article>
     
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/10/08/ios-view-and-viewcontroller-create/">
-                            ios 子视图和viewController创建周期
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-10-08T21:38:24+08:00">
-	
-		    10月 08, 2016
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/开发/">开发</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <h2 id="创建一个UIView"><a href="#创建一个UIView" class="headerlink" title="创建一个UIView"></a>创建一个UIView</h2><pre><code>-(id)init {
-    if (self = [super init]) {
-
-        UILabel * label = [UILabel new];
-        label.tag = 100;
-        [self addSubview:label];
-
-        NSLog(@&quot;init&quot;);
-
-        [self performSelector:@selector(setNeedsUpdateConstraints) withObject:nil afterDelay:5.0f];
-
-    }
-    return self;
-}
-
--(id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        NSLog(@&quot;initWithFrame&quot;);
-    }
-    return self;
-}
-
-
-- (void)willMoveToSuperview:(nullable UIView *)newSuperview {
-    NSLog(@&quot;willMoveToSuperview&quot;);
-
-
-}
-- (void)didMoveToSuperview {
-    NSLog(@&quot;didMoveToSuperview%@&quot;,NSStringFromCGRect(self.frame));
-}
-- (void)willMoveToWindow:(nullable UIWindow *)newWindow {
-    NSLog(@&quot;willMoveToWindow&quot;);
-}
-- (void)didMoveToWindow {
-    NSLog(@&quot;didMoveToWindow%@&quot;,NSStringFromCGRect(self.frame));
-}
-
--(void)updateConstraints {
-    [super updateConstraints];
-    NSLog(@&quot;updateConstraints%@&quot;,NSStringFromCGRect(self.frame));
-
-    UILabel * label = [self viewWithTag:100];
-    [label makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
-    }];
-}
-
--(void)layoutSubviews {
-    [super layoutSubviews];
-    NSLog(@&quot;layoutSubviews%@&quot;,NSStringFromCGRect(self.frame));
-
-
-}
-
--(void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
-    NSLog(@&quot;drawRect%@&quot;,NSStringFromCGRect(rect));
-
-}
-</code></pre><h2 id="将此View加入到UIViewController"><a href="#将此View加入到UIViewController" class="headerlink" title="将此View加入到UIViewController"></a>将此View加入到UIViewController</h2><pre><code>STPStartButton * btn = [STPStartButton new];
-[self.view addSubview:btn];
-[btn makeConstraints:^(MASConstraintMaker *make) {
-    make.centerX.equalTo(self.view);
-    make.centerY.equalTo(self.view).offset(100.0f);
-}];
-
--(void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    NSLog(@&quot;viewWillLayoutSubviews&quot;);
-}
-
--(void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    NSLog(@&quot;viewDidLayoutSubviews&quot;);
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    NSLog(@&quot;viewWillAppear&quot;);
-}
-
--(void)updateViewConstraints {
-    [super updateViewConstraints];
-    NSLog(@&quot;updateViewConstraints&quot;);
-
-}
-</code></pre><h2 id="打印周期日志如下"><a href="#打印周期日志如下" class="headerlink" title="打印周期日志如下"></a>打印周期日志如下</h2><pre><code>2016-10-08 21:33:32.378 Stuep[12384:5705814] initWithFrame
-2016-10-08 21:33:32.379 Stuep[12384:5705814] init
-2016-10-08 21:33:32.379 Stuep[12384:5705814] willMoveToSuperview
-2016-10-08 21:33:32.379 Stuep[12384:5705814] didMoveToSuperview{{0, 0}, {0, 0}}
-2016-10-08 21:33:32.387 Stuep[12384:5705814] viewWillAppear
-2016-10-08 21:33:32.387 Stuep[12384:5705814] willMoveToWindow
-2016-10-08 21:33:32.388 Stuep[12384:5705814] didMoveToWindow{{0, 0}, {0, 0}}
-2016-10-08 21:33:32.401 Stuep[12384:5705814] updateConstraints{{0, 0}, {0, 0}}
-2016-10-08 21:33:32.404 Stuep[12384:5705814] updateViewConstraints
-2016-10-08 21:33:32.405 Stuep[12384:5705814] viewWillLayoutSubviews
-2016-10-08 21:33:32.406 Stuep[12384:5705814] viewDidLayoutSubviews
-2016-10-08 21:33:32.407 Stuep[12384:5705814] layoutSubviews{{172.5, 416.5}, {30, 34}}
-2016-10-08 21:33:32.408 Stuep[12384:5705814] viewWillLayoutSubviews
-2016-10-08 21:33:32.410 Stuep[12384:5705814] viewDidLayoutSubviews
-2016-10-08 21:33:32.410 Stuep[12384:5705814] drawRect{{0, 0}, {30, 34}}
-2016-10-08 21:33:37.380 Stuep[12384:5705814] viewWillLayoutSubviews
-2016-10-08 21:33:37.381 Stuep[12384:5705814] updateConstraints{{172.5, 416.5}, {30, 34}}
-2016-10-08 21:33:37.382 Stuep[12384:5705814] viewDidLayoutSubviews
-</code></pre><p>最后三行是由于在创建成功后5秒执行了子View的setNeedsUpdateConstraints方法.</p>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2016/10/08/ios-view-and-viewcontroller-create/#post-footer" class="postShorten-excerpt_link link">
-                                注释和共享
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/10/07/ios-schemes-URL/">
-                            ios 设置URL
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-10-07T12:24:21+08:00">
-	
-		    10月 07, 2016
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/开发/">开发</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <ul>
-<li>电池电量 Prefs:root=BATTERY_USAGE</li>
-<li>通用设置 Prefs:root=General</li>
-<li>存储空间 Prefs:root=General&amp;path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE</li>
-<li>蜂窝数据 Prefs:root=MOBILE_DATA_SETTINGS_ID</li>
-<li>Wi-Fi 设置 Prefs:root=WIFI</li>
-<li>蓝牙设置 Prefs:root=Bluetooth</li>
-<li>定位设置 Prefs:root=Privacy&amp;path=LOCATION</li>
-<li>辅助功能 Prefs:root=General&amp;path=ACCESSIBILITY</li>
-<li>关于手机 Prefs:root=General&amp;path=About</li>
-<li>键盘设置 Prefs:root=General&amp;path=Keyboard</li>
-<li>显示设置 Prefs:root=DISPLAY</li>
-<li>声音设置 Prefs:root=Sounds</li>
-<li>App Store 设置 Prefs:root=STORE</li>
-<li>墙纸设置 Prefs:root=Wallpaper</li>
-<li>打开电话 Mobilephone://</li>
-<li>世界时钟 Clock-worldclock://</li>
-<li>闹钟 Clock-alarm://</li>
-<li>秒表 Clock-stopwatch://</li>
-<li>倒计时 Clock-timer://</li>
-<li>打开相册 Photos://</li>
-</ul>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2016/10/07/ios-schemes-URL/#post-footer" class="postShorten-excerpt_link link">
-                                注释和共享
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -464,7 +242,6 @@
 </div>
 
 </section>
-
 
 
                 <footer id="footer" class="main-content-wrap">
