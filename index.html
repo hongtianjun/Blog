@@ -269,6 +269,191 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/26/wechat-red-package/" itemprop="url">
+                  微信红包算法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-26T21:54:06+08:00" content="2016-10-26">
+              2016-10-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/26/wechat-red-package/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/26/wechat-red-package/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用python实现的微信红包算法,有些地方还是没有搞明白,如果有人知道还请指教</p>
+<p>##算法精要<br>主要在于随机数的生成</p>
+<pre><code>#这一句是重点,不知道为什么
+#如果比2.0小则前面的红包是小,后面大
+#如果比2.0大则前面是大红包,后面是小红包
+max = remainAmount / remainSize * 2.0
+</code></pre><p>##源代码</p>
+<pre><code>#! encoding:utf-8
+
+import random
+
+import math
+
+
+def getMoney(remainAmount,remainSize):
+    if remainSize == 1:
+        money = round(remainAmount * 100) / 100
+    else: 
+        min = 0.01
+        #这一句是重点,不知道为什么
+        #如果比2.0小则前面的红包是小,后面大
+        #如果比2.0大则前面是大红包,后面是小红包
+        max = remainAmount / remainSize * 2.0
+        #print remainAmount,remainSize,max
+
+        money = random.random() * max
+        money = money &lt;= min and min or money
+        money = math.floor(money * 100) / 100;
+
+    return money
+
+#模拟发放
+def simulateRedPacket(amount,num):
+    remainSize = num
+    remainAmount = amount
+
+    #初始化数组
+    results = [0 for x in xrange(0,num)]
+
+    #模拟发红包
+    for x in xrange(0,num):
+        money = getMoney(remainAmount,remainSize)
+        remainSize  -= 1
+        remainAmount -= money
+        results[x] = money
+
+
+    #计算发放总额
+    sum = 0
+    for x in results:
+        sum += x
+
+    if amount - sum &gt; 0.01:
+        #发放结果
+        pass
+    print results
+    print &quot;, &quot;.join([&quot; = &quot;.join([&quot;金额&quot;,str(amount)]),&quot; = &quot;.join([&quot;数量&quot;,str(num)]),&quot; = &quot;.join([&quot;已发放&quot;,str(sum)]),&quot; = &quot;.join([&quot;差额&quot;,str(amount - sum)])])
+
+if __name__ == &apos;__main__&apos;:
+    for x in xrange(1,2000):
+        #金额
+        amount = round(random.random() * 100) * 1000 / 100
+        #红包数量
+        num = random.randint(1,100)
+
+        simulateRedPacket(amount,num)
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/24/min-value-with-stack/" itemprop="url">
                   记录栈中的最小值
                 </a>
@@ -1196,7 +1381,7 @@ class MinStack {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1213,7 +1398,7 @@ class MinStack {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
